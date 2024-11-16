@@ -1,0 +1,28 @@
+type User {
+    id: ID!
+    name: String!
+    nim: String!
+    kelas: String!
+    token: String
+}
+
+type Inventory {
+    id: ID!
+    name: String!
+    type: String!
+    stock: Int!
+}
+
+type Mutation {
+    registerUser(name: String!, nim: String!, kelas: String!, password: String!): User
+    loginUser(nim: String!, password: String!): User
+    useInventory(userId: ID!, inventoryId: ID!, quantity: Int!): String
+    updateProfile(token: String!, name: String, kelas: String): User
+    changePassword(token: String!, oldPassword: String!, newPassword: String!): String
+    deleteAccount(token: String!): String
+}
+
+type Query {
+    getAllInventories: [Inventory]
+    getProfile(token: String!): User
+}
